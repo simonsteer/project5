@@ -1,0 +1,250 @@
+@import "partials/setup";
+$color--main: cornflowerblue;
+$color--accent: crimson;
+$roboto: 'Montserrat', sans-serif;
+
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin button-hover {
+    border-radius: 0;
+    color: #fff;
+    background-color: $color--main;
+    border: 0.1rem solid $color--main;
+    transition: 0.3s;
+    &:hover {
+        color: $color--main;
+        background-color: #fff;
+        border-color: $color--main;
+    }
+}
+
+@mixin box-shadow {
+    box-shadow: 1rem 1rem 0rem 0 rgba(0, 0, 0, 0.3);
+}
+
+// General styling begins
+
+body {
+    font-family: $roboto;
+    display: flex;
+    justify-content: center;
+    padding: 8vh;
+    background: $color--main;
+}
+
+a {
+    text-decoration: none;
+}
+
+h1 {
+    text-align: left;
+    color: $color--main;
+    font-size: 2rem;
+    margin-top: 0;
+    margin-bottom: 2.25rem;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+form {
+    @include flex-center;
+}
+
+input {
+    text-align: center;
+}
+
+.fa {
+    @include flex-center;
+    padding: 1rem;
+    font-size: 1rem;
+    transition: transform 0.3s;
+}
+
+.app {
+    width: 100vw;
+    max-width: 900px;
+    padding: 1.5rem;
+    background: #fff;
+    @include box-shadow;
+    text-align: center;
+}
+
+.jot {
+    text-align: center;
+    font-size: 8rem;
+}
+
+// Styling for the lists of notes, subjects, and classrooms begins
+.note,
+.subject,
+.classroom {
+    border: 0.1rem solid $color--main;
+    padding: 0.5rem;
+    background: $color--main;
+    color: #fff;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 16fr 1fr;
+    margin-bottom: 1rem;
+    .fa:hover {
+        transform: scale(1.5,1.5);
+    }
+}
+
+.classroom {
+    input {
+        margin: 1rem;
+        font-size: 1.5rem;
+        background: #fff;
+        color: $color--main;
+        &[disabled] {
+            background: $color--main;
+            color: #fff;
+        }
+    }
+}
+
+.subject {
+    input {
+        padding: 0.5rem;
+        font-size: 1.5rem;
+        background: #fff;
+        color: $color--main;
+        &[disabled] {
+            background: $color--main;
+            color: #fff;
+        }
+    }
+    .fa {
+        padding: 0rem;
+    }
+}
+
+.note {
+    background: #fff;
+    padding: 0rem;
+    border: 0;
+    input {
+        border: 0.1rem solid #fff;
+        padding: 0.5rem;
+        text-align: left;
+        font-size: 1rem;
+        font-weight: 700;
+        background: #fff;
+        color: $color--main;
+        &[disabled] {
+            background: #fff;
+            color: $color--main;
+        }
+    }
+    .fa {
+        padding: 0rem;
+        color: $color--main;
+    }
+}
+
+// Classes to be toggled on and off of inputs depending on whether they are being edited or not
+.being-edited {
+    background: #fff;
+    color: $color--main;
+    animation: 1s infinite flash;
+}
+
+.note-being-edited {
+    animation: 1s infinite flash;
+}
+
+// Animation to denote an input is in edit mode
+@keyframes flash {
+    0% {
+        border: 0.1rem solid $color--main;
+    }
+    50% {
+        border: 0.1rem solid #fff;
+    }
+    100% {
+        border: 0.1rem solid $color--main;
+    }
+}
+
+input {
+    width: 100%;
+    color: $color--main;
+    border: 0;
+}
+
+.new-classroom,
+.new-note,
+.new-subject {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    font-size: 1rem;
+    width: 100%;
+    border-bottom: 0.1rem solid $color--main;
+}
+
+// Styling for UI elements directing the user "back" and "home" begins
+.fa-arrow-circle-left,
+.fa-home
+ {
+    font-size: 3rem;
+    padding: 1.125rem;
+    color: $color--main;
+    &:hover {
+        transform: scale(1.5,1.5);
+    }
+}
+
+.fa-arrow-circle-left {
+    float: left;
+}
+
+.fa-home {
+    float: right;
+}
+
+// Styling for the UI elements associated with account creation, signing in, and siging up begins
+.create-user form,
+.sign-in form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    input, button {
+        padding: 0.5rem;
+        margin: 1%;
+    }
+    input {
+        flex-basis: 33%;
+        font-color: $color--main;
+        background-color: #fff;
+        border-bottom: 0.1rem solid $color--main;
+        text-align: left;
+    }
+    button {
+        flex-basis: 28%;
+        @include button-hover;
+    }
+}
+
+.sign-out {
+    float: right;
+    button {
+        font-size: 1rem;
+        padding: 0.5rem;
+        background: $color--main;
+        @include button-hover;
+    }   
+}
+
+// Media Queries begin
+
+@import "partials/breakpoints";

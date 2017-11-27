@@ -1,0 +1,27 @@
+// Set min font size
+@media (min-width: 50em) {
+    html {
+        font-size: 1.9vw;
+    }
+}
+
+// Let the app fill the screen at smaller device sizes
+@media (max-width: 740px) {
+    body {
+        padding: 0;
+        min-height: 100vh;
+    }
+}
+
+// Change the way the user creation and sign in forms display on portrait orientation for phones
+@media (max-width: 740px) and (min-height: 415px) {
+    .create-user form,
+    .sign-in form {
+        input {
+            flex-basis: 48%;
+        }
+        button {
+            flex-basis: 40%;
+        }
+    }
+}
